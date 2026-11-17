@@ -109,4 +109,5 @@ const ventas = [
   },
 ];
 
-module.exports = { ventas };
+module.exports = ventas;
+
