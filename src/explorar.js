@@ -8,7 +8,7 @@ console.log("Cantidad de ventas:", ventas.length);
 console.log("Primera venta:", ventas[0]);
 
 //estamos pidiendo el registro de la posicion 4
-console.log("cuarta venta", ventas[3]);
+console.log("cuarta venta", ventas[3].producto);
 
 //me muestra los datos en una tabla 
 console.table(ventas);
