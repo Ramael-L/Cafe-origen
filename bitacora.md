@@ -49,5 +49,35 @@ que significa si la cantidad de productos de esta venta es mayor que cero ejecut
 y despues que nos retorne el total/ y el contador pero algo clave esque esto "/" signica que divida el total y el contador 
 
 Ventas totales de una ciudad:
+primer prototipo 
+//esto esta mal por que solo toma las ciudades que tienen los mismos caracteres entonces no es efeciente para lo que nos esta pidiendo 
+//function ventasPorCiudad(ventas, ciudad) 
+  //const ciudadBuscada = ciudad.trim().toLowerCase();
+
+    //for (const venta of ventas) {
+        //const ciudadVenta = venta.ciudad.trim().toLowerCase();
+
+        //if (ciudadVenta === ciudadBuscada) {
+         //   total += valorVenta(venta);
+        //}
+    //}
+
+    //return total;
+
+
+    //creamos la funcion que normaliza el nombre de todas las ciudades para que se pueda leer bien el proceso
+
+como este no funciono aplicamos este creamos dos funciones la primera ponemos el nombre de la funcion luego el valor que queremos aplicar la funcion despues en el return lo que queremos que nos retorne  despues abajo especifamos lo que queremos que tenga en cuenta en el retorno que en este caso es:
+
+trim : elimina espacios sobrantes al principio y al final del texto 
+toLowercase(): convierte las letras a minusculas 
+normalize("NDF"): separa las letras de sus tildes
+replace(/[\u0300-\u036f]/g, ""):busca las marcas de acentuacion para eliminarlas 
+
+luego creamos la funcion ventasporciudad(que toma dos parametros ventas , ciudad)
+despues iniciamos el contador en 0 con let y creamos una variable total 
+luego creamos un const ciudadBuscada = normalizarCiudad(ciudad); 
+que traducido seria reutilizar las variables ciudadventa y normalizarciudad luego entre parentesis tenemos la variable venta y el . ciudad que nos permite acceder a la propiedad ciudad luego el if osea si cumple esta propiedad ciudadventa === ciudadbuscada que traducido seria si son exactamente iguales sume el valor acual y lo guarde al nuevo resultado hasta que termine los datos del array
+
 
 

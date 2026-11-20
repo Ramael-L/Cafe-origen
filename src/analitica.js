@@ -75,21 +75,6 @@ function ticketPromedio(ventas) {
 }
 
 
-//function ventasPorCiudad(ventas, ciudad) {
-  //const ciudadBuscada = ciudad.trim().toLowerCase();
-
-    //for (const venta of ventas) {
-        //const ciudadVenta = venta.ciudad.trim().toLowerCase();
-
-        //if (ciudadVenta === ciudadBuscada) {
-         //   total += valorVenta(venta);
-        //}
-    //}
-
-    //return total;
-
-
-    //creamos la funcion que normaliza el nombre de todas las ciudades para que se pueda leer bien el proceso
 function normalizarCiudad(ciudad) {
     return ciudad
         .trim()
@@ -128,9 +113,18 @@ console.log("Venta mayor:", ventaMayor(ventas));
 
 console.log("Ticket promedio:", ticketPromedio(ventas));
 
-console.log("Ventas Medellin",VentasPorCiudad(ventas,"Medellin"));
 
- //console.log("Ventas Por Ciudad", VentasPorCiudad(ventas)) no funcionadaba por que en este caso se tienen que poner las variables para que te el resultado/
+//pruebas que demuestran que ignora caracteres especiales 
+console.log("Medellín:", ventasPorCiudad(ventas, "medellin"));
+
+console.log("Bogotá:", ventasPorCiudad(ventas, "BOGOTA"));
+
+console.log("Cali:", ventasPorCiudad(ventas, "cali"));
+
+console.log("Pereira:", ventasPorCiudad(ventas, "pereira"));
+
+
+ 
 
 
 
