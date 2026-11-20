@@ -25,3 +25,15 @@ Ciudades / Medellin y medellin se estan escribiendo diferente / Ignorar diferenc
 Cantidades / La venta con id: 8 tiene cantidad 0. / conservar el registro pero no contarlo como una compra valida para el ticket promedio
 Clientes / el cloente c01 aparece varias veces / Mantener sus compras por que un mismo cliente puede comprar varias veces
 
+Plan de cada indicador
+
+Valor de una venta: 
+primero creamos la funcion valorventa despues entre parentesis ponemos el nombre del Array que seria ventas luego lo que queremos que nos retorne para esto debemos poner el array con un punto y despues el valor que queremos ver esto lo llama luego un asterisco que significa multiplicacion lo mismo con el otro valor que queremos multiplicar y seria asi : return venta.cantidad*venta.precio 
+
+Total vendido: 
+creamos la funcion totalvendido luego entre parentesis el array luego 
+
+Unidades vendidas: 
+Venta mayor:
+ticket promedio:
+

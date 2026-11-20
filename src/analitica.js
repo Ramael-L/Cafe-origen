@@ -1,5 +1,6 @@
 const ventas = require("./datos.js");
 
+
 // Calcula el valor de una venta
 function valorVenta(venta) {
     return venta.cantidad * venta.precio;
@@ -27,18 +28,32 @@ function unidadesVendidas(ventas) {
     return unidades;
 }
 
-// Encuentra la venta de mayor valor
-function ventaMayor(ventas) {
-    let mayor = null;
 
+// Encuentra la venta que generó más dinero.
+function ventaMayor(ventas) {
+
+    // Si no hay ventas, devolvemos null.
+    if (ventas.length === 0) {
+        return null;
+    }
+
+    // Comenzamos suponiendo que la primera venta es la mayor.
+    let mayor = ventas[0];
+
+    // Recorremos todas las ventas.
     for (const venta of ventas) {
-        if (mayor === null || valorVenta(venta) > valorVenta(mayor)) {
+
+        // Comparamos el valor de cada venta.
+        if (valorVenta(venta) > valorVenta(mayor)) {
             mayor = venta;
         }
     }
 
+    // Devolvemos el objeto completo.
     return mayor;
 }
+
+
 
 // Calcula el ticket promedio
 function ticketPromedio(ventas) {
@@ -70,5 +85,6 @@ console.log("Venta mayor:", ventaMayor(ventas));
 
 console.log("Ticket promedio:", ticketPromedio(ventas));
 
-console.table(ventas)
+
+ //console.log("Ventas Por Ciudad", VentasPorCiudad(ventas))
 
