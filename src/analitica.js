@@ -29,6 +29,7 @@ function unidadesVendidas(ventas) {
 }
 
 
+
 // Encuentra la venta que generó más dinero.
 function ventaMayor(ventas) {
 
@@ -54,7 +55,6 @@ function ventaMayor(ventas) {
 }
 
 
-
 // Calcula el ticket promedio
 function ticketPromedio(ventas) {
     let total = 0;
@@ -74,8 +74,51 @@ function ticketPromedio(ventas) {
     return total / contador;
 }
 
+
+//function ventasPorCiudad(ventas, ciudad) {
+  //const ciudadBuscada = ciudad.trim().toLowerCase();
+
+    //for (const venta of ventas) {
+        //const ciudadVenta = venta.ciudad.trim().toLowerCase();
+
+        //if (ciudadVenta === ciudadBuscada) {
+         //   total += valorVenta(venta);
+        //}
+    //}
+
+    //return total;
+
+
+    //creamos la funcion que normaliza el nombre de todas las ciudades para que se pueda leer bien el proceso
+function normalizarCiudad(ciudad) {
+    return ciudad
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+}
+
+// Calcula el total vendido en cualquier ciudad.
+function ventasPorCiudad(ventas, ciudad) {
+    let total = 0;
+
+    const ciudadBuscada = normalizarCiudad(ciudad);
+
+    for (const venta of ventas) {
+        const ciudadVenta = normalizarCiudad(venta.ciudad);
+
+        if (ciudadVenta === ciudadBuscada) {
+            total += valorVenta(venta);
+        }
+    }
+
+    return total;
+}
+
+
+
 // Los console longs indicados para ver las pruebas 
-console.log("Valor primera venta:", valorVenta(ventas[0]));
+console.log("Valor primera venta:", valorVenta(ventas[1]));
 
 console.log("Total vendido:", totalVendido(ventas));
 
@@ -85,6 +128,10 @@ console.log("Venta mayor:", ventaMayor(ventas));
 
 console.log("Ticket promedio:", ticketPromedio(ventas));
 
+console.log("Ventas Medellin",VentasPorCiudad(ventas,"Medellin"));
 
- //console.log("Ventas Por Ciudad", VentasPorCiudad(ventas))
+ //console.log("Ventas Por Ciudad", VentasPorCiudad(ventas)) no funcionadaba por que en este caso se tienen que poner las variables para que te el resultado/
+
+
+
 
