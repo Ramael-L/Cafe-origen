@@ -1,4 +1,4 @@
-const ventas = require("./datos.js");
+ const ventas = require("./datos.js");
 
 
 //Lee todo el arreglo y me dice cuantos datos hay

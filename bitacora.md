@@ -21,9 +21,7 @@ estos casos son situaciones especiales que se deben tener en cuenta para que nue
 por ejemplo con los Arrays de datos.js 
 
 Caso / Problema / Decision 
-
 Ciudades / Medellin y medellin se estan escribiendo diferente / Ignorar diferencias de mayusculas y espacios al comparar 
-
 Cantidades / La venta con id: 8 tiene cantidad 0. / conservar el registro pero no contarlo como una compra valida para el ticket promedio
-
 Clientes / el cloente c01 aparece varias veces / Mantener sus compras por que un mismo cliente puede comprar varias veces
+

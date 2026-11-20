@@ -1,52 +1,50 @@
-const ventas = require("./datos");
+const ventas = require("./datos.js");
 
-function totalVendido(ventas){
-let total = 0;
-
-for (const venta of ventas) {
-    total += valorVenta(venta);
-    //el += es un acumulador y ateriormente con el let definimos que comieza en 0/
-}
-return total;
+// Calcula el valor de una venta
+function valorVenta(venta) {
+    return venta.cantidad * venta.precio;
 }
 
+// Calcula el dinero total vendido
+function totalVendido(ventas) {
+    let total = 0;
 
-//calucula las unidades vendidas 
+    for (const venta of ventas) {
+        total += valorVenta(venta);
+    }
 
-function unidadesVendidas(ventas){
+    return total;
+}
+
+// Mestra las unidades vendidas 
+function unidadesVendidas(ventas) {
     let unidades = 0;
-//la diferencia con el anterior es que venta tiene .cantidad esto quiere decir que solo va a tomar este dato 
-    for (const venta of ventas){
+
+    for (const venta of ventas) {
         unidades += venta.cantidad;
     }
+
     return unidades;
 }
 
-console.log (valorVenta(ventas))
-
-
-
-
-//calucla la venta mayor 
-
-function ventamayor(ventas){
+// Encuentra la venta de mayor valor
+function ventaMayor(ventas) {
     let mayor = null;
- // este operador ||significa O si mayor es ingual a null O valor venta es mayor que valor venta entonces me retorna el mayor  
-    for (const venta of ventas){
-        if (mayor==null || valorVenta(venta)> valorVenta(mayor))        
+
+    for (const venta of ventas) {
+        if (mayor === null || valorVenta(venta) > valorVenta(mayor)) {
+            mayor = venta;
+        }
     }
-return mayor;
+
+    return mayor;
 }
 
-
-
-// Calcula el tiket promerdio 
+// Calcula el ticket promedio
 function ticketPromedio(ventas) {
     let total = 0;
     let contador = 0;
 
-
-    // el contador ++ es para incrementar el contador en una unidad 
     for (const venta of ventas) {
         if (venta.cantidad > 0) {
             total += valorVenta(venta);
@@ -60,3 +58,17 @@ function ticketPromedio(ventas) {
 
     return total / contador;
 }
+
+// Los console longs indicados para ver las pruebas 
+console.log("Valor primera venta:", valorVenta(ventas[0]));
+
+console.log("Total vendido:", totalVendido(ventas));
+
+console.log("Unidades vendidas:", unidadesVendidas(ventas));
+
+console.log("Venta mayor:", ventaMayor(ventas));
+
+console.log("Ticket promedio:", ticketPromedio(ventas));
+
+console.table(ventas)
+
