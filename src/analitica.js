@@ -1,4 +1,4 @@
-const ventas = require("./datos.js");
+//const ventas = require("./datos.js");
 
 
 // Calcula el valor de una venta
@@ -100,32 +100,147 @@ function ventasPorCiudad(ventas, ciudad) {
     return total;
 }
 
+//iniciando el minireto 3
+
+// Calcula el total vendido utilizando reduce.
+function totalVendidoM(ventas) {
+
+    return ventas.reduce((total, venta) => {
+        return total + valorVenta(venta);
+    }, 0);
+
+}
+
+// Calcula las unidades vendidas utilizando métodos.
+function unidadesVendidasM(ventas) {
+
+    return ventas
+        .map(venta => venta.cantidad)
+        .reduce((total, cantidad) => {
+            return total + cantidad;
+        }, 0);
+
+}
+
+// Calcula el total de una ciudad utilizando métodos.
+function ventasPorCiudadM(ventas, ciudad) {
+
+    const ciudadBuscada = normalizarCiudad(ciudad);
+
+    return ventas
+        .filter(venta => {
+            return normalizarCiudad(venta.ciudad) === ciudadBuscada;
+        })
+        .reduce((total, venta) => {
+            return total + valorVenta(venta);
+        }, 0);
+
+}
 
 
-// Los console longs indicados para ver las pruebas 
-console.log("Valor primera venta:", valorVenta(ventas[1]));
 
-console.log("Total vendido:", totalVendido(ventas));
+// Agrupa el dinero vendido por cada ciudad.
+function totalPorCiudad(ventas) {
 
-console.log("Unidades vendidas:", unidadesVendidas(ventas));
+    const totales = {};
+    const nombres = {};
 
-console.log("Venta mayor:", ventaMayor(ventas));
+    for (const venta of ventas) {
 
-console.log("Ticket promedio:", ticketPromedio(ventas));
+        const clave = normalizarCiudad(venta.ciudad);
+
+        if (totales[clave] === undefined) {
+            totales[clave] = 0;
+            nombres[clave] = venta.ciudad.trim();
+        }
+
+        totales[clave] += valorVenta(venta);
+    }
+
+    const resultado = {};
+
+    for (const entrada of Object.entries(totales)) {
+
+        const clave = entrada[0];
+        const total = entrada[1];
+
+        resultado[nombres[clave]] = total;
+    }
+
+    return resultado;
+}
+
+// Agrupa las unidades vendidas por producto.
+function unidadesPorProducto(ventas) {
+
+    const productos = {};
+
+    for (const venta of ventas) {
+
+        const producto = venta.producto;
+
+        if (productos[producto] === undefined) {
+            productos[producto] = 0;
+        }
+
+        productos[producto] += venta.cantidad;
+    }
+
+    return productos;
+}
+
+// Encuentra los productos que más dinero generaron.
+function topProductosPorValor(ventas, k) {
+
+    const totales = {};
+
+    // Acumulamos el dinero por producto.
+    for (const venta of ventas) {
+
+        const producto = venta.producto;
+
+        if (totales[producto] === undefined) {
+            totales[producto] = 0;
+        }
+
+        totales[producto] += valorVenta(venta);
+    }
+
+    // Convertimos el objeto en un arreglo.
+    const ranking = Object.entries(totales).map(entrada => {
+        return {
+            producto: entrada[0],
+            total: entrada[1]
+        };
+    });
+
+    // Creamos una copia para ordenar.
+    const copia = [...ranking];
+
+    // Ordenamos de mayor a menor.
+    copia.sort((a, b) => {
+        return b.total - a.total;
+    });
+
+    // Devolvemos los primeros k productos.
+    return copia.slice(0, k);
+}
 
 
-//pruebas que demuestran que ignora caracteres especiales 
-console.log("Medellín:", ventasPorCiudad(ventas, "medellin"));
-
-console.log("Bogotá:", ventasPorCiudad(ventas, "BOGOTA"));
-
-console.log("Cali:", ventasPorCiudad(ventas, "cali"));
-
-console.log("Pereira:", ventasPorCiudad(ventas, "pereira"));
-
-
- 
-
-
+module.exports = {
+    valorVenta,
+    totalVendido,
+    unidadesVendidas,
+    ventaMayor,
+    ticketPromedio,
+    normalizarCiudad,
+    ventasPorCiudad,
+    totalVendidoM,
+    unidadesVendidasM,
+    ventasPorCiudadM,
+    totalPorCiudad,
+    unidadesPorProducto,
+    topProductosPorValor
+};
 
 

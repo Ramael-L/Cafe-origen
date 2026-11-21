@@ -80,4 +80,86 @@ luego creamos un const ciudadBuscada = normalizarCiudad(ciudad);
 que traducido seria reutilizar las variables ciudadventa y normalizarciudad luego entre parentesis tenemos la variable venta y el . ciudad que nos permite acceder a la propiedad ciudad luego el if osea si cumple esta propiedad ciudadventa === ciudadbuscada que traducido seria si son exactamente iguales sume el valor acual y lo guarde al nuevo resultado hasta que termine los datos del array
 
 
+mini reto 3 
+
+Debemos utilizar 
+map(), Tr
+filter(), 
+reduce(), sort()
+slice(), 
+Object.entries() 
+
+Al finalizar, el programa debe mostrar las mismas cantidades que obtuvimos en el MiniReto 2 y conservar intacto el arreglo original. 
+
+
+
+
+
+
+
+
+
+
+
+
+ MiniReto 3  Métodos de arreglos y agrupaciones
+
+En este reto aprendí a utilizar nuevos métodos de JavaScript para trabajar con arreglos sin depender siempre de los ciclos `for...of`.
+
+1. totalVendidoM
+
+- Recorro todas las ventas.
+- No necesito filtrar.
+- Transformo cada venta en su valor monetario.
+- Acumulo el dinero usando `reduce()`.
+- No necesito agrupar.
+
+ 2. unidadesVendidasM
+
+- Recorro todas las ventas.
+- No necesito filtrar.
+- Utilizo `map()` para obtener las cantidades.
+- Utilizo `reduce()` para sumar las unidades.
+- No necesito agrupar.
+
+ 3. ventasPorCiudadM
+
+- Recorro las ventas.
+- Utilizo `filter()` para seleccionar una ciudad.
+- Normalizo los nombres y calculo el valor de las ventas.
+- Utilizo `reduce()` para sumar el dinero.
+- No necesito crear grupos porque busco una ciudad específica.
+
+ 4. totalPorCiudad
+
+- Recorro todas las ventas.
+- No filtro ninguna ciudad.
+- Normalizo los nombres.
+- Acumulo el dinero vendido.
+- Agrupo los resultados por ciudad.
+
+ 5. unidadesPorProducto
+
+- Recorro todas las ventas.
+- No necesito filtrar.
+- Obtengo el nombre de cada producto.
+- Acumulo las cantidades.
+- Agrupo las unidades por producto.
+
+ 6. topProductosPorValor
+
+- Recorro todas las ventas.
+- Selecciono los primeros productos después de ordenarlos.
+- Convierto los totales en un arreglo utilizando `Object.entries()` y `map()`.
+- Acumulo el dinero por producto.
+- Agrupo los valores por producto y los ordeno usando `sort()`.
+
+ ¿Qué aprendí?
+
+Aprendí que `map()` transforma los elementos de un arreglo, `filter()` selecciona los que cumplen una condición y `reduce()` permite acumular resultados.
+
+También aprendí a utilizar objetos para agrupar información y `sort()` para ordenar resultados.
+
+Lo más importante fue comprobar que las funciones nuevas deben devolver los mismos resultados que las funciones que hicimos anteriormente con ciclos.
+
 
