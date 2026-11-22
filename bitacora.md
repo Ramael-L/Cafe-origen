@@ -92,15 +92,92 @@ Object.entries()
 Al finalizar, el programa debe mostrar las mismas cantidades que obtuvimos en el MiniReto 2 y conservar intacto el arreglo original. 
 
 
+ MiniReto 3 — Explicación de las funciones de JavaScript
+Conceptos nuevos
+
+En este MiniReto aprendí que no siempre necesito utilizar `for...of` para recorrer los arreglos. JavaScript tiene métodos que me ayudan a realizar diferentes operaciones.
+`map()` sirve para transformar los elementos de un arreglo y crear uno nuevo.
+`filter()` sirve para seleccionar los elementos que cumplen una condición.
+`reduce()` sirve para recorrer un arreglo y acumular un resultado. El `0` que ponemos al final representa el valor inicial del acumulador.
+
+También aprendí que `=>` se utiliza para crear funciones flecha, que son otra manera de escribir funciones en JavaScript.
+
+ totalVendidoM(ventas)
+
+Esta función calcula cuánto dinero se vendió en total utilizando `reduce()`.
+Primero recibe el arreglo de ventas y después lo recorre. Dentro de `reduce()` aparecen dos parámetros: `total`, que guarda el dinero acumulado, y `venta`, que representa el registro que estamos revisando.
+Luego utilizamos `valorVenta(venta)`, una función que ya habíamos creado para multiplicar la cantidad por el precio. El resultado se suma al acumulador mediante `return total + valorVenta(venta)`.
+Al final colocamos `0` porque queremos que la suma comience desde cero.
+Lo que entendí es que `reduce()` hace algo parecido a nuestro ciclo `for...of`, pero se encarga de manejar el acumulador y de devolver el resultado final.
+Con los datos originales, el total esperado es **985000 pesos**.
+
+
+unidadesVendidasM(ventas)
+
+Esta función calcula cuántas unidades se vendieron utilizando `map()` y `reduce()`.
+Primero utilizamos `map(venta => venta.cantidad)`. Esto recorre las ventas y obtiene solamente la cantidad de cada una, creando un arreglo nuevo con esos números.
+Después utilizamos `reduce()` para sumar las cantidades que obtuvimos.
+En `reduce((total, cantidad) => ...)`, `total` representa las unidades acumuladas y `cantidad` representa el número que estamos sumando en esa vuelta.
+Con esta función aprendí que puedo encadenar métodos: primero transformo los datos con `map()` y después los acumulo con `reduce()`.
+El resultado esperado con las 12 ventas es **21 unidades**.
+
+
+ventasPorCiudadM(ventas, ciudad)
+Esta función calcula el dinero vendido en una ciudad específica utilizando `filter()` y `reduce()`.
+Recibe dos parámetros: `ventas`, que contiene los registros, y `ciudad`, que indica cuál queremos buscar.
+Primero utilizamos `normalizarCiudad(ciudad)` para evitar problemas con las mayúsculas, los espacios y las tildes.
+Después `filter()` recorre las ventas y selecciona solamente los registros cuya ciudad coincida con la ciudad buscada. Para comparar utilizamos `===`, que comprueba si dos valores son estrictamente iguales.
+Cuando ya tenemos las ventas de esa ciudad, `reduce()` suma sus valores monetarios utilizando `valorVenta()`.
+Con esta función aprendí que `filter()` selecciona los datos y `reduce()` los acumula.
+El resultado esperado para Medellín es **356000 pesos**
+
+
+totalPorCiudad(ventas)
+
+Esta función calcula cuánto dinero se vendió en cada ciudad automáticamente, sin tener que buscar una ciudad por separado.
+Primero creamos dos objetos vacíos: `totales` y `nombres`. El primero guarda el dinero acumulado y el segundo conserva los nombres que queremos mostrar.
+Después recorremos las ventas con `for...of` y utilizamos `normalizarCiudad()` para crear una clave que identifique cada ciudad.
+La condición `totales[clave] === undefined` comprueba si todavía no existe un acumulador para esa ciudad. Si no existe, lo creamos comenzando en cero.
+Luego utilizamos `totales[clave] += valorVenta(venta)` para sumar el dinero de cada registro a su ciudad correspondiente.
+Después creamos otro objeto llamado `resultado` y utilizamos `Object.entries(totales)` para convertir las propiedades del objeto en parejas de clave y valor.
+Con `entrada[0]` obtenemos la clave y con `entrada[1]` obtenemos el dinero acumulado. Finalmente utilizamos los nombres guardados para construir el resultado que vamos a devolver.
+Lo que aprendí es que un objeto puede funcionar como un diccionario, donde cada ciudad tiene su propio acumulador.
+El resultado esperado son cuatro ciudades: Medellín, Bogotá, Cali y Pereira.
 
 
 
+unidadesPorProducto(ventas)
+
+Esta función agrupa las ventas por producto y calcula cuántas unidades se vendieron de cada uno.
+Primero creamos un objeto vacío llamado `productos`.
+Después recorremos todas las ventas con `for...of` y guardamos el nombre del producto de cada registro en una variable.
+La condición `productos[producto] === undefined` comprueba si todavía no hemos registrado ese producto. Si es la primera vez que aparece, creamos su acumulador en cero.
+Luego utilizamos `productos[producto] += venta.cantidad` para sumar las unidades de la venta actual al total que llevamos de ese producto.
+Al finalizar devolvemos el objeto completo con las cantidades.
+Aprendí que puedo utilizar las propiedades de un objeto como acumuladores diferentes. En esta función agrupamos por producto y sumamos unidades, mientras que en `totalPorCiudad()` agrupamos por ciudad y sumamos dinero.
+Con nuestros datos, la suma de todas las unidades debe ser **21**.
+
+
+topProductosPorValor(ventas, k)
+
+Esta función obtiene los productos que más dinero generaron y los ordena de mayor a menor.
+Recibe dos parámetros: `ventas`, que contiene los registros, y `k`, que indica cuántos productos queremos mostrar. Por ejemplo, si `k` vale `3`, queremos obtener los tres primeros.
+Primero creamos un objeto llamado `totales`. Después recorremos las ventas y acumulamos el dinero generado por cada producto utilizando `valorVenta()`.
+Cuando terminamos de agrupar, utilizamos `Object.entries(totales)` para convertir el objeto en un arreglo. Luego usamos `map()` para transformar cada pareja en un objeto con dos propiedades: `producto` y `total`.
+Después aparece `const copia = [...ranking]`. Los tres puntos son el operador de propagación y permiten crear una copia superficial del arreglo.
+Utilizamos esta copia porque `sort()` modifica el orden del arreglo donde se ejecuta.
+La instrucción `sort((a, b) => b.total - a.total)` ordena los productos de mayor a menor según el dinero generado.
+Finalmente utilizamos `slice(0, k)` para obtener los primeros productos del arreglo ordenado.
+Lo que más me costó entender fue cómo trabajaban juntos `Object.entries()`, `map()`, `sort()` y `slice()`. Ahora comprendo que primero agrupamos los datos, después los transformamos, luego los ordenamos y finalmente seleccionamos los resultados que necesitamos.
+Con nuestros datos, los tres productos que más dinero generaron deben ser Origen Huila 500 g, Origen Sierra 500 g y Prensa francesa.
 
 
 
+ module.exports
 
-
-
+Al final de `analitica.js` utilizamos `module.exports` para compartir nuestras funciones con otros archivos del proyecto.
+Esto no ejecuta las funciones. Solamente permite que archivos como `verificar.js` o `reporte.js` puedan importarlas utilizando `require()`.
+Aprendí que separar las funciones de las pruebas ayuda a mantener el proyecto más organizado, porque podemos reutilizar el mismo código desde diferentes archivos.
 
  MiniReto 3  Métodos de arreglos y agrupaciones
 
@@ -154,19 +231,52 @@ En este reto aprendí a utilizar nuevos métodos de JavaScript para trabajar con
 - Acumulo el dinero por producto.
 - Agrupo los valores por producto y los ordeno usando `sort()`.
 
- ¿Qué aprendí?
-
-Aprendí que `map()` transforma los elementos de un arreglo, `filter()` selecciona los que cumplen una condición y `reduce()` permite acumular resultados.
-
-También aprendí a utilizar objetos para agrupar información y `sort()` para ordenar resultados.
-
-Lo más importante fue comprobar que las funciones nuevas deben devolver los mismos resultados que las funciones que hicimos anteriormente con ciclos.
-
-Prueba de totalPorCiudad
-
-En esta prueba comprobé que la función agrupa las ventas por ciudad utilizando objetos como diccionarios. Aprendí que `Object.entries()` permite recorrer las propiedades y sus valores. También comprobé que la normalización evita crear grupos diferentes para una misma ciudad.
-
-El resultado esperado es cuatro ciudades y un total general de 985000 pesos.
 
 
-En el apartado verificar nos damos cuenta que 
+ MiniReto 3 — Verificación de resultados
+ ¿Para qué sirve verificar.js?
+En este archivo utilizamos las funciones que creamos en analitica.js para comprobar que las nuevas versiones funcionan correctamente.
+Primero importamos las ventas con require y después las funciones que queremos comparar.
+Creamos una función llamada comparar que recibe tres parámetros: nombre, original y nuevo.
+Utilizamos if y el operador === para comprobar si los resultados son iguales. Si coinciden mostramos OK y si no coinciden mostramos DIFERENTE.
+Comprobación de las funciones
+
+Total vendido: comparamos la función original con la versión que utiliza reduce. Ambas deben devolver 985000 pesos.
+**Unidades vendidas: comparamos la función original con la versión que utiliza map y reduce. Ambas deben devolver 21 unidades.
+Ventas por ciudad: comparamos las dos versiones utilizando Medellín. Ambas deben devolver 356000 pesos.
+Agrupaciones por ciudad
+Utilizamos totalPorCiudad para obtener el dinero generado en cada ciudad.
+El resultado esperado es:
+
+| Ciudad | Total vendido |
+|---|---:|
+| Medellín | 356000 |
+| Bogotá | 276000 |
+| Cali | 185000 |
+| Pereira | 168000 |
+
+Utilizamos Object.keys().length para comprobar que solamente existen cuatro ciudades y que no se generan grupos duplicados.
+
+Unidades por producto
+Utilizamos unidadesPorProducto para agrupar las cantidades de cada producto.
+El total esperado es de 21 unidades distribuidas entre cinco productos.
+Aprendí que Object.values() permite obtener los valores de las propiedades de un objeto y que podemos utilizar reduce para sumar esas cantidades.
+
+Ranking de productos
+Utilizamos topProductosPorValor para encontrar los tres productos que más dinero generaron.
+El resultado esperado es:
+
+| Producto | Total |
+|---|---:|
+| Origen Huila 500 g | 294000 |
+| Origen Sierra 500 g | 225000 |
+| Prensa francesa | 190000 |
+
+También debemos comprobar que el arreglo original conserva su orden después de ejecutar las funciones.
+
+Conclusión
+ este MiniReto aprendí que no basta con escribir una función. También debemos comprobar que devuelve los resultados esperados.
+Comprendí que los métodos map, filter y reduce permiten realizar operaciones similares a las que hacíamos con for...of.
+La parte que más me costó fue entender cómo se utilizan los objetos para agrupar datos y cómo se combinan Object.entries, map, sort y slice.
+
+
