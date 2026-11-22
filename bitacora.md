@@ -279,4 +279,25 @@ Conclusión
 Comprendí que los métodos map, filter y reduce permiten realizar operaciones similares a las que hacíamos con for...of.
 La parte que más me costó fue entender cómo se utilizan los objetos para agrupar datos y cómo se combinan Object.entries, map, sort y slice.
 
+arreglos y selección aleatoria
+
+En este ejercicio comenzamos a crear un generador de ventas que nos permitirá trabajar con más registros sin tener que escribirlos manualmente.
+Primero creamos un arreglo llamado productos donde guardamos cinco productos de Café Origen. Cada producto es un objeto que tiene dos propiedades: nombre y precio.
+También creamos un arreglo llamado ciudades que contiene Medellín, Bogotá, Cali y Pereira.
+Después aprendimos a utilizar Math.random(), que genera un número decimal aleatorio entre 0 y 1, sin incluir el 1.
+Como necesitamos seleccionar una posición del arreglo, multiplicamos ese número por productos.length, que nos devuelve la cantidad de productos.
+Luego utilizamos Math.floor() para redondear hacia abajo y obtener un número entero.
+Con ese número creamos la variable posicionAleatoria y después la utilizamos para seleccionar un producto del arreglo.
+Finalmente mostramos el producto seleccionado utilizando console.log().
+
+Aprendí que los arreglos comienzan en la posición 0, que Math.random() genera números aleatorios y que Math.floor() permite convertir el resultado en un número entero redondeando hacia abajo.
+También comprendí que podemos utilizar una variable como posición de un arreglo para obtener un elemento diferente en cada ejecución.
+Todavía falta crear la función generarVentas(n), que utilizará estos conceptos para generar varios registros automáticamente.
+
+En este paso comenzamos a crear la función generarVentas que recibe un parámetro llamado n. Este parámetro indica cuántas ventas queremos generar.
+Primero creamos un arreglo vacío llamado ventas donde después guardaremos los registros.
+Luego utilizamos un ciclo for que comienza con i = 0 y se repite mientras i sea menor que n. En cada vuelta utilizamos i++ para aumentar el contador en uno.
+También utilizamos console.log para comprobar cuántas veces se ejecuta el ciclo.
+Aprendí que un ciclo for nos permite repetir instrucciones sin tener que escribirlas varias veces. Todavía falta agregar los objetos al arreglo utilizando push.
+
 
