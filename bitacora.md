@@ -162,4 +162,11 @@ También aprendí a utilizar objetos para agrupar información y `sort()` para o
 
 Lo más importante fue comprobar que las funciones nuevas deben devolver los mismos resultados que las funciones que hicimos anteriormente con ciclos.
 
+Prueba de totalPorCiudad
 
+En esta prueba comprobé que la función agrupa las ventas por ciudad utilizando objetos como diccionarios. Aprendí que `Object.entries()` permite recorrer las propiedades y sus valores. También comprobé que la normalización evita crear grupos diferentes para una misma ciudad.
+
+El resultado esperado es cuatro ciudades y un total general de 985000 pesos.
+
+
+En el apartado verificar nos damos cuenta que 
