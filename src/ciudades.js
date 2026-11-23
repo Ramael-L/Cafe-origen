@@ -1,5 +1,5 @@
 
-const { normalizarCiudad, valorVenta } = require("./analitica.js");
+const { normalizarCiudad, valorVenta, totalPorCiudad } = require("./analitica.js");
 
 // Versión 1: varios métodos encadenados.
 function totalCiudadCadena(ventas, ciudad) {
@@ -42,5 +42,6 @@ function totalCiudadUnaPasada(ventas, ciudad) {
 
 module.exports = {
     totalCiudadCadena,
-    totalCiudadUnaPasada
+    totalCiudadUnaPasada,
+    totalCiudad: totalCiudadUnaPasada
 };

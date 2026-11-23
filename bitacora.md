@@ -430,3 +430,26 @@ La versión de un solo recorrido puede ser más conveniente cuando trabajamos co
 Resultado con métodos: 485900000
 Resultado con un ciclo: 485900000
 ¿Los resultados son iguales? true
+
+
+tabla 
+valorVenta	O(1)	Solo calcula una multiplicación
+totalVendido	O(1)	Guarda un acumulador
+unidadesVendidas	O(1)	Guarda el total de unidades
+ventaMayor	O(1)	Conserva una referencia a la mayor venta
+ticketPromedio	O(1)	Utiliza un total y un contador
+normalizarCiudad	O(L)	Crea textos transformados; L es la longitud del texto
+ventasPorCiudad	O(1)*	Acumula un total y normaliza nombres
+totalVendidoM	O(1)	reduce() utiliza un acumulador
+unidadesVendidasM	O(n)	map() crea un arreglo
+ventasPorCiudadM	O(n)	filter() crea un arreglo
+totalPorCiudad	O(c)	Guarda información de cada ciudad distinta
+unidadesPorProducto	O(p)	Guarda información de cada producto distinto
+topProductosPorValor	O(p)	Crea un ranking, una copia ordenada y un resultado
+clientesRecurrentes	O(n)	Puede guardar muchos clientes recurrentes
+totalCiudadCadena	O(n)	Crea tres arreglos intermedios
+totalCiudadUnaPasada	O(1)*	Solo utiliza un acumulador y variables temporales
+generarVentas	O(n)	Construye un arreglo de n ventas
+
+
+
