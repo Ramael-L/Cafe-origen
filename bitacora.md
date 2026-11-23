@@ -318,5 +318,34 @@ Si encontramos una venta que generó más dinero, actualizamos la variable mayor
 Con las 12 ventas originales esperamos encontrar la venta número 10 y contar 23 operaciones según las acciones que decidimos medir.
 Aprendí que podemos contar el trabajo de una función sin cambiar el resultado que devuelve.
 
+ Función totalPorCiudadContado
+
+En esta función reutilizamos totalPorCiudad, que agrupa las ventas por ciudad y calcula el dinero vendido en cada una.
+La diferencia es que ahora recibimos un objeto contador para medir las operaciones.
+Primero recorremos las ventas con for...of y aumentamos el contador cuando visitamos cada registro.
+Después normalizamos el nombre de la ciudad y contamos la comprobación que hacemos para saber si esa ciudad ya tiene un acumulador.
+Cuando terminamos de agrupar, utilizamos Object.entries para recorrer los resultados y contamos cada grupo visitado.
+Con los 12 registros originales esperamos obtener cuatro ciudades y 28 operaciones.
+Aprendí que podemos agregar contadores a nuestras funciones para estudiar cuánto trabajo hacen sin cambiar sus resultados.
+
+
+Predicción de operaciones
+
+Antes de medir, considero que totalVendidoContado, ventaMayorContada y totalPorCiudadContado aumentarán sus operaciones aproximadamente diez veces cuando multipliquemos por diez la cantidad de ventas.
+Esto sucede porque las tres funciones recorren los registros para calcular los resultados.
+En cambio, primeraVentaContada debería realizar siempre una operación, porque solamente consulta la primera posición del arreglo.
+Por eso espero que las primeras tres funciones tengan complejidad O(n) y que primeraVentaContada tenga complejidad O(1).
+
+
+Resultados y clasificación Big O
+
+Al ejecutar las pruebas observamos cómo aumenta el número de operaciones dependiendo de la cantidad de ventas.
+totalVendidoContado tiene complejidad O(n), porque recorre cada venta una vez.
+ventaMayorContada también tiene complejidad O(n), porque compara cada venta con la mayor encontrada hasta ese momento.
+totalPorCiudadContado tiene complejidad O(n) cuando trabajamos con las cuatro ciudades definidas, porque recorre las ventas para agrupar sus valores.
+primeraVentaContada tiene complejidad O(1), porque obtiene directamente el primer registro sin recorrer el arreglo.
+La diferencia principal es que las funciones O(n) realizan más trabajo cuando aumentan las ventas, mientras que la función O(1) mantiene la misma cantidad de operaciones.
+Esto confirma nuestra predicción inicial.
+
 
 
