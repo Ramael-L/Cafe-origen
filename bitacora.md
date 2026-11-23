@@ -294,10 +294,29 @@ Aprendí que los arreglos comienzan en la posición 0, que Math.random() genera 
 También comprendí que podemos utilizar una variable como posición de un arreglo para obtener un elemento diferente en cada ejecución.
 Todavía falta crear la función generarVentas(n), que utilizará estos conceptos para generar varios registros automáticamente.
 
-En este paso comenzamos a crear la función generarVentas que recibe un parámetro llamado n. Este parámetro indica cuántas ventas queremos generar.
-Primero creamos un arreglo vacío llamado ventas donde después guardaremos los registros.
-Luego utilizamos un ciclo for que comienza con i = 0 y se repite mientras i sea menor que n. En cada vuelta utilizamos i++ para aumentar el contador en uno.
-También utilizamos console.log para comprobar cuántas veces se ejecuta el ciclo.
+Después de crear las listas de productos y ciudades, construimos la función generarVentas que recibe un número n y genera esa cantidad de registros.
+Utilizamos un ciclo for para repetir el proceso y Math.random junto con Math.floor para elegir productos, ciudades, clientes y cantidades aleatoria.
+También utilizamos Math.max para asegurar que exista al menos un cliente y padStart para completar con ceros los números de las fechas y los identificadores de clientes.
+En cada vuelta creamos un objeto llamado nuevaVenta con la misma estructura que utilizamos en datos.js.
+Después usamos push para agregar ese objeto al arreglo y finalmente return para devolver todas las ventas generadas.
+La diferencia con nuestro primer intento es que antes solamente mostrábamos mensajes en consola y ahora realmente guardamos los registros en un arreglo.
 Aprendí que un ciclo for nos permite repetir instrucciones sin tener que escribirlas varias veces. Todavía falta agregar los objetos al arreglo utilizando push.
+
+En este punto comenzamos a crear versiones de nuestras funciones que cuentan las operaciones que realizan.
+Primero creamos totalVendidoContado, que funciona de manera parecida a totalVendido, pero recibe un segundo parámetro llamado contador.
+Este contador es un objeto que tiene una propiedad llamada operaciones, que comienza en cero.
+Dentro del ciclo for utilizamos contador.operaciones++ para aumentar el contador cada vez que visitamos una venta.
+La función sigue calculando el dinero total utilizando valorVenta, pero ahora también podemos saber cuántas ventas recorrió.
+Aprendí que podemos pasar un objeto a una función y modificar sus propiedades desde ella
+Predicción antes de medir: si multiplicamos por diez la cantidad de ventas, las operaciones de esta función también deberían multiplicarse por diez, porque recorre cada venta una vez.
+
+Creacion de la ventaMayorContada
+En esta función reutilizamos la lógica de ventaMayor para encontrar la venta que generó más dinero, pero agregamos un contador de operaciones.
+Primero comprobamos si el arreglo está vacío. Después tomamos la primera venta como la mayor y comenzamos a recorrer las demás desde el índice 1.
+En cada vuelta aumentamos el contador dos veces: una por visitar la venta y otra por compararla con la venta mayor.
+Si encontramos una venta que generó más dinero, actualizamos la variable mayor.
+Con las 12 ventas originales esperamos encontrar la venta número 10 y contar 23 operaciones según las acciones que decidimos medir.
+Aprendí que podemos contar el trabajo de una función sin cambiar el resultado que devuelve.
+
 
 
