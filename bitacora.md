@@ -347,5 +347,71 @@ primeraVentaContada tiene complejidad O(1), porque obtiene directamente el prime
 La diferencia principal es que las funciones O(n) realizan más trabajo cuando aumentan las ventas, mientras que la función O(1) mantiene la misma cantidad de operaciones.
 Esto confirma nuestra predicción inicial.
 
+creamos recurrentes.js 
 
+En este ejercicio analizamos una función que busca los clientes que han comprado más de una vez.
+La función tiene dos ciclos for anidados. El primero selecciona una venta y el segundo la compara con las ventas siguientes.
+También utiliza includes para comprobar que el cliente no esté guardado anteriormente y push para agregarlo al arreglo de clientes recurrentes.
+Con los 12 registros originales esperamos encontrar los clientes C01, C02 y C03.
+Traza manual
+Para comprender cómo funciona, utilizamos cinco ventas con los clientes C01, C02, C01, C03 y C02.
+La primera venta realiza cuatro comparaciones, la segunda tres, la tercera dos y la cuarta una. En total son diez comparaciones.
+Aprendimos que la cantidad de comparaciones entre pares se puede calcular con la fórmula n(n - 1) / 2.
+Por eso los ciclos anidados tienen complejidad O(n²), ya que el número de comparaciones crece mucho más rápido que la cantidad de ventas.
+Todavía debemos medir el tiempo de ejecución para comprobar cómo afecta este crecimiento al rendimiento del programa.
+
+
+Pruebas de tiempo 
+PS C:\Users\Ramael\Cafe-origen\src> node medir-recurrentes.js
+Prueba con 1000 ventas: 6.239ms
+Prueba con 2000 ventas: 17.14ms
+Prueba con 4000 ventas: 68.109ms
+Prueba con 8000 ventas: 279.767ms
+Prueba con 16000 ventas: 1.050s
+
+TIEMPOS DE CLIENTES RECURRENTES
+┌─────────┬────────┬──────────────┐
+│ (index) │ ventas │ milisegundos │
+├─────────┼────────┼──────────────┤
+│ 0       │ 1000   │ 6.23         │
+│ 1       │ 2000   │ 17.118       │
+│ 2       │ 4000   │ 68.089       │
+│ 3       │ 8000   │ 279.744      │
+│ 4       │ 16000  │ 1049.571     │
+└─────────┴────────┴──────────────┘
+Estimación para 100.000 ventas: 41.00 segundos
+Estimación para 1.000.000 de ventas: 68.33 minutos
+¿Conviene probar 100.000 ventas? Sí, estimación menor a 2 minutos
+
+En este punto utilizamos el generador del MiniReto 5 para crear conjuntos de ventas de distintos tamaños.
+Después ejecutamos clientesRecurrentes con 1.000, 2.000, 4.000, 8.000 y 16.000 registros.
+Utilizamos console.time y console.timeEnd para observar cuánto tarda cada ejecución. También guardamos las mediciones en un arreglo y las mostramos utilizando console.table.
+La función utiliza dos ciclos for anidados, por lo que esperamos que al duplicar las ventas aumente considerablemente el tiempo de ejecución.
+aquí agregaremos la tabla con los tiempos reales obtenidos.
+utilizamos el tiempo medido con 16.000 ventas para estimar cuánto podría tardar con 100.000 y 1.000.000 de registros.
+Estas estimaciones nos ayudarán a decidir si es conveniente ejecutar una prueba más grande.
+
+
+Análisis final de rendimiento
+
+En este ejercicio analizamos por qué la función clientesRecurrentes se vuelve lenta cuando aumentamos la cantidad de ventas.
+La función utiliza dos ciclos for anidados que comparan cada venta con las siguientes.
+Con 1.000 ventas realiza 499.500 comparaciones entre pares y con 2.000 ventas realiza 1.999.000. Esto demuestra que al duplicar los registros, las comparaciones aumentan aproximadamente cuatro veces.
+Los ciclos tienen complejidad O(n²).
+También encontramos un costo adicional en includes, porque este método recorre el arreglo de clientes recurrentes para comprobar si un cliente ya fue agregado. En el peor caso, este trabajo puede aumentar la complejidad total hasta O(n³).
+
+Mediciones reales
+
+Debemos registrar los tiempos obtenidos con 1.000, 2.000, 4.000, 8.000 y 16.000 ventas.
+También debemos registrar las estimaciones para 100.000 y 1.000.000 de ventas, calculadas con nuestros resultados.
+Conclusión para la gerente
+El reporte se vuelve lento porque compara muchas ventas entre sí y repite búsquedas para encontrar clientes que ya habían sido identificados.
+Cuando aumenta la cantidad de ventas, aumenta mucho más la cantidad de trabajo que realiza el programa.
+Para mejorar el rendimiento, en una futura versión podríamos guardar los clientes encontrados en una estructura que permita consultarlos más rápidamente y evitar comparaciones innecesarias.
+
+Estimación para 100.000 ventas: 42.53 segundos
+Estimación para 1.000.000 de ventas: 70.88 minutos
+¿Conviene probar 100.000 ventas? Sí, estimación menor a 2 minutos
+Probando con 100.000 ventas...
+100.000 ventas: 1:13.408 (m:ss.mmm)
 
