@@ -415,3 +415,18 @@ Estimación para 1.000.000 de ventas: 70.88 minutos
 Probando con 100.000 ventas...
 100.000 ventas: 1:13.408 (m:ss.mmm)
 
+
+Tiempo y memoria
+
+En este ejercicio creamos dos funciones que calculan el total vendido en una ciudad.
+La primera se llama totalCiudadCadena y utiliza map, filter, map y reduce. Primero normaliza las ciudades, después filtra las ventas que necesitamos, calcula el valor de cada venta y finalmente suma los resultados.
+
+La segunda función se llama totalCiudadUnaPasada y utiliza un solo ciclo for...of. Durante el recorrido comprueba la ciudad y suma el valor de las ventas correspondientes.
+Las dos funciones tienen complejidad temporal O(n), pero la primera hace cuatro recorridos de arreglos y crea tres arreglos intermedios.
+La primera utiliza memoria adicional O(n), mientras que la segunda utiliza O(1), suponiendo que los textos tienen un tamaño limitado.
+Con este ejercicio aprendí que dos funciones pueden tener la misma complejidad temporal, pero utilizar cantidades diferentes de memoria.
+La versión de un solo recorrido puede ser más conveniente cuando trabajamos con grandes cantidades de ventas.
+
+Resultado con métodos: 485900000
+Resultado con un ciclo: 485900000
+¿Los resultados son iguales? true
