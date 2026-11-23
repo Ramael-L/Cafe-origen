@@ -453,3 +453,56 @@ generarVentas	O(n)	Construye un arreglo de n ventas
 
 
 
+Creamos el archivo medir-informe.js para analizar el rendimiento de las funciones que desarrollamos durante la semana.
+Generamos una muestra de 10.000 ventas y utilizamos process.hrtime.bigint para medir cuánto tarda cada función.
+Ejecutamos las funciones tres veces y tomamos el tiempo central para reducir el efecto de las variaciones entre pruebas.
+También calculamos una proyección para 1.000.000 de ventas según la complejidad temporal de cada función.
+Aprendimos que las proyecciones son aproximaciones y que pueden cambiar dependiendo de la cantidad de datos, la memoria disponible y el trabajo interno de cada función.
+
+
+INFORME DE RENDIMIENTO
+┌─────────┬────────────────────────┬─────────────────┬──────────────┬─────────────┐
+│ (index) │ funcion                │ entrada         │ tiempoMs     │ proyeccion  │
+├─────────┼────────────────────────┼─────────────────┼──────────────┼─────────────┤
+│ 0       │ 'valorVenta'           │ '1 venta'       │ '0.000400'   │ '0.000 s'   │
+│ 1       │ 'totalVendido'         │ '10.000 ventas' │ '0.168000'   │ '0.017 s'   │
+│ 2       │ 'unidadesVendidas'     │ '10.000 ventas' │ '0.109000'   │ '0.011 s'   │
+│ 3       │ 'ventaMayor'           │ '10.000 ventas' │ '0.140700'   │ '0.014 s'   │
+│ 4       │ 'ticketPromedio'       │ '10.000 ventas' │ '0.182500'   │ '0.018 s'   │
+│ 5       │ 'normalizarCiudad'     │ '1 texto'       │ '0.001800'   │ '0.000 s'   │
+│ 6       │ 'ventasPorCiudad'      │ '10.000 ventas' │ '2.684700'   │ '0.268 s'   │
+│ 7       │ 'totalVendidoM'        │ '10.000 ventas' │ '0.089000'   │ '0.009 s'   │
+│ 8       │ 'unidadesVendidasM'    │ '10.000 ventas' │ '0.177400'   │ '0.018 s'   │
+│ 9       │ 'ventasPorCiudadM'     │ '10.000 ventas' │ '2.735900'   │ '0.274 s'   │
+│ 10      │ 'totalPorCiudad'       │ '10.000 ventas' │ '4.360200'   │ '0.436 s'   │
+│ 11      │ 'unidadesPorProducto'  │ '10.000 ventas' │ '0.726800'   │ '0.073 s'   │
+│ 12      │ 'topProductosPorValor' │ '10.000 ventas' │ '0.722200'   │ '0.072 s'   │
+│ 13      │ 'clientesRecurrentes'  │ '10.000 ventas' │ '431.947600' │ '71.99 min' │
+│ 14      │ 'totalCiudadCadena'    │ '10.000 ventas' │ '3.281900'   │ '0.328 s'   │
+│ 15      │ 'totalCiudadUnaPasada' │ '10.000 ventas' │ '3.256300'   │ '0.326 s'   │
+│ 16      │ 'generarVentas'        │ '10.000 ventas' │ '1.489200'   │ '0.149 s'   │
+└─────────┴────────────────────────┴─────────────────┴──────────────┴─────────────┘
+
+TABLA PARA EL INFORME:
+
+| Función | Entrada medida | Tiempo medido (ms) | Proyección 1.000.000 |
+|---|---|---:|---:|
+| valorVenta | 1 venta | 0.000400 | 0.000 s |
+| totalVendido | 10.000 ventas | 0.168000 | 0.017 s |
+| unidadesVendidas | 10.000 ventas | 0.109000 | 0.011 s |
+| ventaMayor | 10.000 ventas | 0.140700 | 0.014 s |
+| ticketPromedio | 10.000 ventas | 0.182500 | 0.018 s |
+| normalizarCiudad | 1 texto | 0.001800 | 0.000 s |
+| ventasPorCiudad | 10.000 ventas | 2.684700 | 0.268 s |
+| totalVendidoM | 10.000 ventas | 0.089000 | 0.009 s |
+| unidadesVendidasM | 10.000 ventas | 0.177400 | 0.018 s |
+| ventasPorCiudadM | 10.000 ventas | 2.735900 | 0.274 s |
+| totalPorCiudad | 10.000 ventas | 4.360200 | 0.436 s |
+| unidadesPorProducto | 10.000 ventas | 0.726800 | 0.073 s |
+| topProductosPorValor | 10.000 ventas | 0.722200 | 0.072 s |
+| clientesRecurrentes | 10.000 ventas | 431.947600 | 71.99 min |
+| totalCiudadCadena | 10.000 ventas | 3.281900 | 0.328 s |
+| totalCiudadUnaPasada | 10.000 ventas | 3.256300 | 0.326 s |
+| generarVentas | 10.000 ventas | 1.489200 | 0.149 s |
+
+
