@@ -58,4 +58,6 @@ Medir las funciones del motor y obtener proyecciones:
 
 ## Documentación
 
+**Guía para estudiar el código:** [GUIA_DEL_CODIGO.md](GUIA_DEL_CODIGO.md) explica qué hace cada archivo JavaScript, cómo funcionan sus funciones principales, qué reciben, qué devuelven y cómo probarlos.
+
 Consulta **RENDIMIENTO.md** para el informe técnico de la versión v0.2. Las mediciones son experimentales y las proyecciones son estimaciones, no garantías de ejecución.
